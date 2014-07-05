@@ -1,0 +1,51 @@
+---
+title: "Week 5 R Quiz"
+author: "dan berko"
+date: "July 5, 2014"
+output: html_document
+---
+Question 1
+--------
+```{r, matrixCreation, prompt=TRUE, eval=TRUE}
+A <- matrix(c(1,-1,-1,-1), nrow=2)
+A
+B <- matrix(c(2, -1, 3, -2), nrow=2)
+B
+C <- matrix(c(1, 0, 0, 0), nrow=2, ncol=2)
+C
+D <- matrix(c(0, 1, 0, 1, 0, 0, 0, 0 ,1), nrow=3)
+D
+E <- matrix(c( 1, 0, 0, 0, 0, 1, 0, 1, 0), nrow=3)
+E
+```
+Question 2
+--------
+```{r, idempotent, prompt=TRUE, eval=FALSE}
+A %*% A == A
+B  %*% B == B
+C %*% C == C
+D %*% D == D
+E %*% E == E
+```
+Only C is an idempotent matrix
+
+Question 3
+--------
+```{r, orthogonal, prompt=TRUE, eval=FALSE}
+t(A) == solve(A)
+t(B) == solve(B)
+t(C) == solve(C)
+t(D) == solve(D)
+t(E) == solve(E)
+```
+D and E are orothogonal matrices
+
+Question 4
+--------
+```{r, listCreation, prompt=TRUE, eval=TRUE}
+V <- c('fee', 'fi', 'fo', 'fum')
+A <- array(17:51, dim=c(5,7))
+L <- list(1, 'potato', 2, 'potato', 3, 'potato', 4)
+newList <- list (V, E, A, mtcars, L)
+newList
+```
