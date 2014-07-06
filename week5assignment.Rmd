@@ -1,0 +1,39 @@
+---
+title: "Week 5 R Assignment"
+author: "dan berko"
+date: "July 5, 2014"
+output: html_document
+---
+Question 1.
+------
+Appending data is adding a row to the data object one by one. Preallocating is reserving memory for the data structure ahead of time instead of adding rows one by one. This is more efficient for large data sets as the block of memory needed is allocated all at once and the memory manager doesn't need to resize and make copies of the data object before resizing it when appending.
+
+```{r, preallocate, prompt=TRUE, eval=FALSE}
+# Preallocate a list of length 1000
+x <- vector(mode = "list", length = 1000)
+
+# If you had the data you needed to store in this list, you could use lapply to preallocate and assign by creating the function you need:
+x <- lapply(1:10, function(i) i)
+
+# Preallocate a vector of length 1000
+v <- vector(length = 1000)
+
+# Again, if you had the data, you could use sapply and pass in the function to assign the data to the vector
+v2 <- sapply(1:10, function(i) i)
+
+#data frame
+myClass <- data.frame( StudentID = numeric(200), 
+                      FName = character(200), 
+                      LName = character(200), 
+                      Zip = character(200))
+```
+
+Question 2.
+------
+```{r, dataTest, prompt=TRUE, eval=TRUE}
+data(Boston, package='MASS')
+myBoston = data.frame(MillRate = Boston$tax,
+                      BorderCharlesRiver = Boston$chas,
+                      CommuteAverage = Boston$dis
+                      )
+```
