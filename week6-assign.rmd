@@ -1,0 +1,19 @@
+---
+title: "week 6 R assignment"
+author: "dan berko"
+date: "July 12, 2014"
+output: html_document
+---
+
+```{r, echo=TRUE}
+pizza <- read.csv('~/Documents/CUNY/pizza-store-data.csv', header=TRUE)
+summary(pizza)
+
+```
+
+The columns are:
+
+-   date: a factor consisting of 365 dates, one for each day of the year (2013)                 
+-   store: a factor consisting of streets representing each store (four locations)
+-   pizzas: integers representing the number of pizzas sold by each store each day
+-   customers: integers representing the number of customers per store per each day  
