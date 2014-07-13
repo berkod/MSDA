@@ -1,5 +1,5 @@
 ---
-title: "week 6 R assignment"
+title: "week 6 R quiz"
 author: "dan berko"
 date: "July 12, 2014"
 output: html_document
