@@ -1,0 +1,22 @@
+---
+title: "week 6 assignment"
+author: "dan berko"
+date: "July 12, 2014"
+output: html_document
+---
+
+Reading the season 13 table from the page: http://tardis.wikia.com/wiki/List_of_Doctor_Who_television_stories
+
+```{r, myFirstSeason}
+tryCatch({require(XML)},
+         warning =function(w){
+          install.packages('XML', repos="http://cran.rstudio.com/")           
+         },
+         finally = {
+           require(XML)
+         })
+page <- 'http://tardis.wikia.com/wiki/List_of_Doctor_Who_television_stories'
+season <- readHTMLTable(page, header=TRUE, which=20)
+colnames(season)<- c('Story', 'Title', 'Episodes', 'Original Airdates')
+season
+```
