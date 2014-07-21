@@ -1,0 +1,34 @@
+---
+title: "week 7 assignment"
+author: "dan berko"
+date: "July 20, 2014"
+output: html_document
+---
+
+Load All Charters as Data Frames
+---
+```{r, LoadAllcharters}
+tryCatch({library("RSQLite")},
+         warning =function(w){
+          install.packages("RSQLite", repos="http://cran.rstudio.com/")           
+         },
+         finally = {
+           require(RSQLite)
+         })
+db <- dbConnect(dbDriver("SQLite"), dbname="/Users/dberko/Documents/CUNY/simplecharter.sqlite")
+allcharters = dbGetQuery(db, "select * from allcharters")
+captains = dbGetQuery(db, "select * from captains")
+payments = dbGetQuery(db, "select * from payments")
+bookings = dbGetQuery(db, "select * from bookings")
+ships  = dbGetQuery(db, "select * from ships")
+```
+
+Load Boston into Sqlite
+---
+```{r, LoadBoston}
+library("RSQLite")
+data(Boston, package='MASS')
+db <- dbConnect(dbDriver("SQLite"), dbname="/Users/dberko/Documents/CUNY/boston.sqlite")
+dbWriteTable(db, name='boston', value=Boston)
+dbGetQuery(db, "select * from boston limit 5")
+```
