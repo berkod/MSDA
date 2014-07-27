@@ -1,0 +1,74 @@
+---
+title: "Week 8 R Quiz"
+author: "dan berko"
+date: "July 25, 2014"
+output: html_document
+---
+
+Illustrate how to add element by element the contents of two numeric vectors of equal length using a for loop. Comment on how this differs from the easier vector addition method preferred in R.
+
+```{r, addElements}
+a = c(1, 3, 5, 7)
+b = c(2, 4, 6, 8)
+d = vector('integer', 4)
+for(x in 1:length(a)){
+  d[x] <- a[x] + b[x]
+}
+d
+
+```
+The for loop is much more verbose and doesn't take advantage of the nature of R's vectors.
+```{r, convAdd}
+a <- c(1, 3, 5, 7)
+b <- c(2, 4, 6, 8)
+d <- a+b
+d
+```
+
+Write code that uses a while loop that determines how many "heads" in a row an arbitrary vector of coin flips has starting at the beginning. An example of a vector input is c("heads","heads","tails","heads"). Your code should give an answer of 2 when run on this vector. Note that a vector that begins with "tails" should give an answer of 0.
+
+```{r, NoHeadsInARow}
+heads <- 0
+count <- 1
+flips <- c("tails","heads")
+while('heads' == flips[count]){
+  heads <- heads + 1
+  count <- count + 1
+}
+heads
+```
+```{r, 2HeadsInARow}
+heads <- 0
+count <- 1
+flips <- c("heads","heads","tails","heads")
+while('heads' == flips[count]){
+  heads <- heads + 1
+  count <- count + 1
+}
+heads
+```
+```{r, 6HeadsInARow}
+heads <- 0
+count <- 1
+flips <- c("heads","heads","heads","heads","heads","heads","tails","heads")
+while('heads' == flips[count]){
+  heads <- heads + 1
+  count <- count + 1
+}
+heads
+```
+Use a for loop running over all 100 integers from 1 to 100 and the ifelse() function to add only the odd numbers from 1 to 100. BONUS: Can you show how to accomplish the same thing without using a loop?
+
+```{r,ifelse}
+
+odd <- 0
+for ( x in 1:100 ){
+  odd = ifelse(x %% 2, odd + x, odd + 0 )
+}
+odd
+```
+```{r,ifelsesequece}
+x <- (1:100 )
+odd = sum(ifelse(x %% 2, x, 0 ))
+odd
+```
