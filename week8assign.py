@@ -56,7 +56,7 @@ if __name__ == '__main__':
     cursor = conn.cursor()
     # Comment out the next two lines to not duplicate rows.
     # Better would obviously be to validate data on inserts.
-    # createTables(cursor)
-    # conn.commit()
+    createTables(cursor)
+    conn.commit()
 
     retrieveData(cursor)
