@@ -1,0 +1,39 @@
+---
+title: "week 8 Assignment"
+author: "dan berko"
+date: "July 27, 2014"
+output: html_document
+---
+
+Use the rbinom() function with probability 0.5 to simulate a string of 100 coin flips.
+
+```{r}
+flips <- rbinom(100, 1, .5)
+flips
+```
+
+Write code that will test the sequence you just generated to determine whether there is a string of at least seven in a row of either heads or tails. (You can choose whether to consider 0 heads and 1 tails or vice versa.)
+
+```{r}
+any(rle(flips)$lengths >= 7)
+```
+
+Enclose the code for steps 1 and 2 in a loop so that you can run it a bunch of times. Use this loop to determine the proportion of 100-toss sequences that actually have at least seven in a row of the same thing. This is your estimate of the probability.
+```{r}
+tot <- 10
+prob <- vector('logical', tot)
+for(ii in 1:tot){
+  flips <- rbinom(100, 1, .5)
+  prob[ii] <- any(rle(flips)$lengths >= 7)
+}
+sum(prob) / tot
+```
+
+Run the loop with 10 such sequences. Then run it with 100, and 1000. (If you're really brave, run it more times still...) Comment both on how well your estimate seems to converge to a single answer and also how R performs at these loops. Do you notice a significant slowdown at 1000 sequences? What about 10,000? Where does your machine start really to grind to a halt?
+
+The more times I ran it, the closer the probability approached 0.54.
+
+The time it took to return a result started to become noticable at about 5000 sequences, but it was still about a third of a second. By 75000 iterations, it took about 5 seconds (enclosing the function in system.time).
+
+I did notice a significant difference between runs when I forgot to correctly pre-allocate the vector. After about 10000 iterations, the second run was significantly faster, and the subsequent runs varied around the same time as the second run. This makes sense as the first run essentially allocated the vector and subsequent runs overwrote the positions in the vector.
+
